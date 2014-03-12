@@ -12,12 +12,20 @@ class NeverCacheMixin(object):
     def dispatch(self, *args, **kwargs):
         return super(NeverCacheMixin, self).dispatch(*args, **kwargs)
 
-
 class LoginRequiredMixin(object):
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(LoginRequiredMixin, self).dispatch(*args, **kwargs)
+    '''usage: make sure LoginRequiredMixin comes first.
 
+    #right:
+    class YourNeedLoginView(LoginRequiredMixin, TemplateView):
+        template_name = 'index.html'
+
+    #wrong:
+    class YourNeedLoginView(TemplateView, LoginRequiredMixin):
+        template_name = 'index.html'
+    '''
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(LoginRequiredMixin, self).dispatch(request, *args, **kwargs)
 
 class CSRFExemptMixin(object):
     @method_decorator(csrf_exempt)

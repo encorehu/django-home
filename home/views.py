@@ -6,20 +6,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from django.views.generic import TemplateView
 
-class LoginRequiredMixin(object):
-    '''usage: make sure LoginRequiredMixin comes first.
-
-    #right:
-    class YourNeedLoginView(LoginRequiredMixin, TemplateView):
-        template_name = 'index.html'
-
-    #wrong:
-    class YourNeedLoginView(TemplateView, LoginRequiredMixin):
-        template_name = 'index.html'
-    '''
-    @method_decorator(login_required)
-    def dispatch(self, request, *args, **kwargs):
-        return super(LoginRequiredMixin, self).dispatch(request, *args, **kwargs)
+from .mixins import LoginRequiredMixin
 
 class HomeView(TemplateView):
     template_name = 'home/index.html'
