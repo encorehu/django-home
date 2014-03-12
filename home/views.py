@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
+from django.views.generic import TemplateView
 
 class LoginRequiredMixin(object):
     '''usage: make sure LoginRequiredMixin comes first.
