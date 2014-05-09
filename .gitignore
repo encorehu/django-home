@@ -34,3 +34,22 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+
+# Rope
+.ropeproject
+
+# Django stuff:
+*.log
+*.pot
+
+# Sphinx documentation
+docs/_build/
+
+*.db
+*.cmd
+*.prj
+*.pui
+*.exe
+*.zip
+*.psd
+*.gz
