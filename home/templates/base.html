@@ -1,0 +1,154 @@
+﻿{% load i18n staticfiles %}<!doctype html>
+<!--[if lt IE 7 ]><html lang="en" class="no-js ie6"><![endif]-->
+<!--[if (gt IE 6)|!(IE)]><!--><html lang="en" class="no-js"><!--<![endif]-->
+<head>
+	{% block meta %}
+	<meta charset="{% block meta.charset %}utf-8{% endblock meta.charset %}">
+	<title>{% block title %}title{% endblock %} - {{SITE_NAME}}</title>
+
+	<meta name="description" content="{% block meta.description %}{{ SITE_NAME }}{% endblock meta.description %}" />
+	<meta name="keywords" content="{% block meta.keywords %}keyword, {{ SITE_NAME }} {% endblock meta.keywords %}" />
+	<meta name="author" content="{% block meta.author %}author{% endblock meta.author %}">
+	<meta name="robots" content="{% block meta.robots %}index,follow{% endblock meta.robots %}" />
+	<meta name="generator" content="DDTCMS V{{ DDTCMS_VERSION }}" />
+	<meta name="copyright" content="http://{{ SITE_DOMAIN }}/" />
+	{% endblock meta %}
+
+	<!-- Delete these two icon references once you've placed them in the root directory with these file names -->
+
+	<link rel="shortcut icon" href="/favicon.ico"><!-- favicon 16x16 -->
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png"><!-- apple touch icon 57x57 -->
+
+	{% block css %}
+	<link rel="stylesheet" href="{% static 'todo/css/html5.css'%}?v=20110303" media="screen" />
+	{% block css.shared %}
+	<link rel="stylesheet" href="{% static 'todo/css/main.css'%}?v=20110303" media="screen" />
+	<link rel="stylesheet" href="{% static 'todo/css/jquery-ui.css' %}"/>
+	{% endblock css.shared %}
+	{% block css.custom %}{% endblock css.custom %}
+	{% endblock css%}
+
+	{% block js %}
+	{% block js.shared %}
+	<script src="http://apps.bdimg.com/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="{% static 'home/js/jquery-ui.js' %}" type="text/javascript"></script>
+	<script src="{% static 'home/js/jquery-ui-datepicker-hans.js' %}" type="text/javascript"></script>
+	{% endblock js.shared %}
+	{% block js.custom %}{% endblock js.custom %}
+	{% endblock js%}
+
+	{% block rss %}
+	{% block rss.shared %}{% endblock rss.shared%}
+	{% block rss.custom %}{% endblock rss.custom%}
+	{% endblock rss%}
+
+	{% block head.extra %}{% endblock head.extra%}
+	{% block extrahead %}{% endblock extrahead %}
+</head>
+
+<body class="home" {% block bodyonload %}{% endblock bodyonload %}>
+
+	<header class="header">
+		<div class="wrapper">
+
+			<div class="header__img">
+				<a href="/">
+				<img src="/img/logo.jpg" alt="logo">
+				</a>
+			</div>
+			<div class="header__bio">
+				<p>
+				I'm Author
+				</p>
+			</div>
+
+
+		</div>
+	</header>
+
+
+	<nav class="nav">
+	<ul>
+		<li>
+			<a href="/todo">TODO</a>
+		</li>
+		<li>
+			<a href="/issues">
+			Issues
+			</a>
+		</li>
+		<li>
+			<a href="/admin/">
+			Admin
+		</a>
+		</li>
+	</ul>
+	</nav>
+
+
+<main class="content"  role="main">
+	{% block header %}
+	<div id="breadcrumbs" class="breadcrumbs">
+		{% block breadcrumbs %}{% for crumb in crumbs %}<a href="{{ crumb.path }}">{% trans crumb.name %}</a>{% if not forloop.last %} &raquo; {% endif %}{% endfor %}{% endblock %}
+	</div>
+	{% endblock header%}
+
+	<div class="action-bar">
+		<form class="search">
+		<input type="text" placeholder="Search">
+		<ul></ul>
+		</form>
+	</div>
+
+	<div class="wrapper">
+		{% block content %} {% endblock content%}
+  	{% block extended_content %} {% endblock extended_content%}
+	</div>
+
+
+
+
+
+	{% block extended_page %}
+
+	{% endblock extended_page %}
+
+	<footer class="footer">
+	{% block footer %}
+		<div class="wrapper">
+		<div class="footer__copyright">
+		&copy; 2017 - Charles Hulibinson
+		</div>
+		<div class="footer__links">
+		<ul>
+			<li>
+				<a href="//weibo.com/" target="_blank">Weibo</a>
+			</li>
+		</ul>
+		</div>
+		</div>
+	{% endblock footer%}
+
+	</footer><!--end:botmfooter-->
+
+</main>
+
+
+{%comment%}{%endcomment%}<!-- Remote jQuery with local fallback; taken from HTML5 Boilerplate http://html5boilerplate.com -->
+
+
+<!--[if lt IE 7 ]>
+<script src="{{STATIC_URL}}js/dd_belatedpng.js"></script>
+<script> DD_belatedPNG.fix('img, .png_bg');</script>
+<![endif]-->
+
+{% block js.extra %}{% endblock js.extra %}
+
+
+{% if DEBUG %}
+
+{%else%}
+
+{%endif%}
+</body>
+</html>
