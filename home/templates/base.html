@@ -47,7 +47,7 @@
 </head>
 
 <body class="home" {% block bodyonload %}{% endblock bodyonload %}>
-
+{% block header %}
 	<header class="header">
 		<div class="wrapper">
 
@@ -65,7 +65,7 @@
 
 		</div>
 	</header>
-
+{% endblock header%}
 
 	<nav class="nav">
 	<ul>
@@ -87,11 +87,11 @@
 
 
 <main class="content"  role="main">
-	{% block header %}
+
 	<div id="breadcrumbs" class="breadcrumbs">
 		{% block breadcrumbs %}{% for crumb in crumbs %}<a href="{{ crumb.path }}">{% trans crumb.name %}</a>{% if not forloop.last %} &raquo; {% endif %}{% endfor %}{% endblock %}
 	</div>
-	{% endblock header%}
+
 
 	<div class="action-bar">
 		<form class="search">
