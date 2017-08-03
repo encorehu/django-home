@@ -11,7 +11,7 @@ setup(
     url='https://github.com/encorehu/django-home',
     packages=find_packages(),
     package_dir={'home':'home'},
-    package_data={'home':['*.*','templates/home/*.*']},
+    package_data={'home':['*.*','templates/*.*', 'templates/home/*.*']},
     zip_safe = False,
     include_package_data=True,
     classifiers=[
